@@ -143,7 +143,7 @@ public class FrmDocumentos extends javax.swing.JFrame {
         if (cmbCriterio.getSelectedIndex() >= 0) {
             Util.iniciarCronometro();
 
-            Documento.ordenarInserccionRecursivo(cmbCriterio.getSelectedIndex());
+            Documento.ordenarInsercionRecursivo(cmbCriterio.getSelectedIndex());
             txtTiempo.setText(Util.getTextoTiempoCronometro());
             Documento.mostrarDatos(tblDocumentos);
         }
