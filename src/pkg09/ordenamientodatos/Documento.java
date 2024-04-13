@@ -160,61 +160,7 @@ public class Documento {
                     && d1.getNombreCompleto().compareTo(d2.getNombreCompleto()) < 0);
         }
     }
-
-//    public static void ordenarInserccionRecursivo(int criterio) {
-//        // Lo divido en pequeños bloques para ordenarse y evitar el error de StackOverflowError
-//        int tamañoBloque = 1000; // 
-//
-//        ordenarInserccionRecursivoAux(0, tamañoBloque - 1, criterio);
-//
-//        // Aplico el algoritmo de inserción recursivo a los bloques siguientes
-//        for (int i = tamañoBloque; i < documentos.size() ; i += tamañoBloque) {
-//            int inicioBloque = i;
-//            int finBloque = Math.min(i + tamañoBloque - 1, documentos.size() - 1);
-//            ordenarInserccionRecursivoAux(inicioBloque, finBloque, criterio);
-//        }
-//    }
-//
-//    private static void ordenarInserccionRecursivoAux(int inicio, int fin, int criterio) {
-//        // Verificamos que los índices estén dentro de los límites de la lista
-//        if (inicio < 0 || fin >= documentos.size() || inicio >= fin) {
-//            return;
-//        }
-//
-//        //Divido la lista en subconjuntos más pequeños
-//        int medio = inicio + (fin - inicio) / 2;
-//        ordenarInserccionRecursivoAux(inicio, medio, criterio);
-//        ordenarInserccionRecursivoAux(medio + 1, fin, criterio);
-//
-//        // Combinar los subconjuntos ordenados utilizando el algoritmo de inserción
-//        fusionar(inicio, medio, fin, criterio);
-//    }
-//        private static void fusionar(int inicio, int medio, int fin, int criterio) {
-//        List<Documento> temporal = new ArrayList<>();
-//        int i = inicio;
-//        int j = medio + 1;
-//
-//        while (i <= medio && j <= fin) {
-//            if (esMenor(documentos.get(i), documentos.get(j), criterio)) {
-//                temporal.add(documentos.get(i));
-//                i++;
-//            } else {
-//                temporal.add(documentos.get(j));
-//                j++;
-//            }
-//        }
-//        while (i <= medio) {
-//            temporal.add(documentos.get(i));
-//            i++;
-//        }
-//        while (j <= fin) {
-//            temporal.add(documentos.get(j));
-//            j++;
-//        }
-//        for (int k = 0; k < temporal.size(); k++) {
-//            documentos.set(inicio + k, temporal.get(k));
-//        }
-//    }
+//ordenamiento por inserccion
     public static void ordenarInsercionRecursivo(int criterio) {
         // Tamaño del bloque para la inserción recursiva
         int tamañoBloque = 1000;
@@ -229,7 +175,7 @@ public class Documento {
             return;
         }
 
-        // Dividir la lista en bloques más pequeños y llamar recursivamente
+        // Divido la lista en bloques más pequeños y llamar recursivamente
         for (int i = inicio; i <= fin; i += tamañoBloque) {
             int inicioBloque = i;
             int finBloque = Math.min(i + tamañoBloque - 1, fin);
@@ -238,7 +184,7 @@ public class Documento {
     }
 
     private static void ordenarInsercionRecursivoBloque(int inicio, int fin, int criterio) {
-        // Aplicar el algoritmo de inserción en el bloque actual
+        // Aplicar el algoritmo de inserción en el bloque actual, disminuyendo la carga de las llamadas recursivas que hago
         for (int i = inicio + 1; i <= fin; i++) {
             Documento temp = documentos.get(i);
             int j = i - 1;
