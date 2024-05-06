@@ -24,8 +24,24 @@ public class Documento {
         return documento;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido1() {
+        return apellido1;
+    }
+
+    public String getApellido2() {
+        return apellido2;
+    }
+
     public String getNombreCompleto() {
         return apellido1 + " " + apellido2 + " " + nombre;
+    }
+
+    public boolean equals(Documento d) {
+        return getDocumento().equals(d.getDocumento()) && getNombreCompleto().equals(d.getNombreCompleto());
     }
 
     //************ATRIBUTOS Y METODOS ESTATICOS****************
@@ -55,6 +71,10 @@ public class Documento {
         }
     }
 
+    public static int obtenerPos(Documento d) {
+        return documentos.indexOf(d);
+    }
+
     public static void mostrarDatos(JTable tbl) {
         String[][] datos = null;
         if (documentos.size() > 0) {
@@ -79,7 +99,7 @@ public class Documento {
     }
 
 //metodo para verificar si un documento es mayor que otro
-    private static boolean esMayor(Documento d1, Documento d2, int criterio) {
+    public static boolean esMayor(Documento d1, Documento d2, int criterio) {
         if (criterio == 0) {
             //ordenar primero por Nombre completo y luego tipo de documento
             return (d1.getNombreCompleto().compareTo(d2.getNombreCompleto()) > 0)
@@ -161,6 +181,7 @@ public class Documento {
         }
     }
 //ordenamiento por inserccion
+
     public static void ordenarInsercionRecursivo(int criterio) {
         // Tamaño del bloque para la inserción recursiva
         int tamañoBloque = 1000;
@@ -196,4 +217,13 @@ public class Documento {
         }
     }
 
+    public static ArbolBinario obtenerArbolBinario(int criterio) {
+        ArbolBinario ab = new ArbolBinario();
+        ab.setCriterio(criterio);
+        for (int i = 0; i < documentos.size(); i++) {
+            Nodo n = new Nodo(documentos.get(i));
+            ab.insertarNodo(n);
+        }
+        return ab;
+    }
 }
